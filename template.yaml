@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  weather-data-download
+
+Globals:
+  Function:
+    Timeout: 30
+    Environment:
+      Variables:
+        OPEN_WEATHER_API: "https://api.openweathermap.org/data/2.5/weather"
+        OPEN_WEATHER_API_KEY: "VALID_API_KEY"
+        CITY_CODE: 1271951
+
+Resources:
+  WeatherDataDownload:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: src/app.lambda_handler
+      Runtime: python3.8
